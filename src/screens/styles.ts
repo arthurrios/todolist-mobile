@@ -5,11 +5,13 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1A1A1A',
   },
+  main: {
+    padding: 24,
+  },
   form: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 24,
     marginTop: -58,
     gap: 4,
   },
@@ -42,5 +44,40 @@ export const styles = StyleSheet.create({
     width: 52,
     borderRadius: 6,
     backgroundColor: '#1E6F9F',
+  },
+  taskQuantity: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 32,
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+  },
+  createdText: {
+    color: '#4EA8DE',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  doneText: {
+    color: '#8284FA',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  quantityNumberBg: {
+    backgroundColor: '#333',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 19,
+    width: 25,
+    borderRadius: 999,
+  },
+  quantity: {
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    fontSize: 14,
+    color: '#D9D9D9',
+    fontWeight: 'bold',
   },
 })

@@ -49,6 +49,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 32,
+    marginBottom: 21,
   },
   quantityContainer: {
     flexDirection: 'row',

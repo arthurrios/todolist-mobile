@@ -4,6 +4,7 @@ import { styles } from './styles'
 import { PlusCircle } from 'lucide-react-native'
 import { useState } from 'react'
 import { Task } from '../components/Task'
+import { DoneTask } from '../components/DoneTask'
 
 export function Home() {
   const [created, setCreated] = useState(0)
@@ -47,9 +48,8 @@ export function Home() {
         <Task />
         <Task />
         <Task />
-        <Task />
-        <Task />
-        <Task />
+        <DoneTask />
+        <DoneTask />
       </View>
     </View>
   )

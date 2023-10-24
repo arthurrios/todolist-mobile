@@ -96,6 +96,7 @@ export function Home() {
             onBlur={() => setIsFocused(false)}
             onChangeText={setTaskText}
             value={taskText}
+            keyboardAppearance="dark"
           />
 
           <TouchableOpacity style={styles.button} onPress={handleAddTask}>

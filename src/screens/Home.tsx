@@ -35,8 +35,8 @@ export function Home() {
   function handleAddTask() {
     if (tasks.includes(taskText)) {
       return Alert.alert(
-        'Tarefa Existe',
-        'Já existe uma tarefa na lista com esse nome',
+        'Task Exists',
+        'There is already a task with the specified name',
       )
     }
     setCreated((prevState) => [...prevState, taskText])
@@ -63,23 +63,29 @@ export function Home() {
   }
 
   function handleRemoveTask(task: string) {
-    Alert.alert('Remover', `Remover tarefa: ${task}?`, [
-      {
-        text: 'Sim',
-        onPress: () => {
-          setTasks((prevState) => prevState.filter((item) => item !== task))
-          if (created.includes(task)) {
-            setCreated((prevState) => prevState.filter((item) => item !== task))
-          } else if (done.includes(task)) {
-            setDone((prevState) => prevState.filter((item) => item !== task))
-          }
-        },
-      },
-      {
-        text: 'Não',
-        style: 'cancel',
-      },
-    ])
+    // Alert.alert('Remover', `Remover tarefa: ${task}?`, [
+    //   {
+    //     text: 'Sim',
+    //     onPress: () => {
+    //       setTasks((prevState) => prevState.filter((item) => item !== task))
+    //       if (created.includes(task)) {
+    //         setCreated((prevState) => prevState.filter((item) => item !== task))
+    //       } else if (done.includes(task)) {
+    //         setDone((prevState) => prevState.filter((item) => item !== task))
+    //       }
+    //     },
+    //   },
+    //   {
+    //     text: 'Não',
+    //     style: 'cancel',
+    //   },
+    // ])
+    setTasks((prevState) => prevState.filter((item) => item !== task))
+    if (created.includes(task)) {
+      setCreated((prevState) => prevState.filter((item) => item !== task))
+    } else if (done.includes(task)) {
+      setDone((prevState) => prevState.filter((item) => item !== task))
+    }
   }
 
   return (
@@ -90,7 +96,7 @@ export function Home() {
         <View style={styles.form}>
           <TextInput
             style={isFocused ? styles.inputFocus : styles.input}
-            placeholder="Adicione uma nova tarefa"
+            placeholder="Add a new task"
             placeholderTextColor="#808080"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
@@ -105,13 +111,13 @@ export function Home() {
         </View>
         <View style={styles.taskQuantity}>
           <View style={styles.quantityContainer}>
-            <Text style={styles.createdText}>Criadas</Text>
+            <Text style={styles.createdText}>Created</Text>
             <View style={styles.quantityNumberBg}>
               <Text style={styles.quantity}>{created.length}</Text>
             </View>
           </View>
           <View style={styles.quantityContainer}>
-            <Text style={styles.doneText}>Concluídas</Text>
+            <Text style={styles.doneText}>Done</Text>
             <View style={styles.quantityNumberBg}>
               <Text style={styles.quantity}>{done.length}</Text>
             </View>
@@ -136,10 +142,10 @@ export function Home() {
             <View style={styles.emptyContainer}>
               <SvgXml xml={EmptyIcon}></SvgXml>
               <Text style={styles.emptyTextOne}>
-                Você ainda não tem tarefas cadastradas
+                You don't have tasks to display
               </Text>
               <Text style={styles.emptyTextTwo}>
-                Crie tarefas e organize seus itens a fazer
+                Create your tasks and organize your items
               </Text>
             </View>
           )}

@@ -1,17 +1,46 @@
 import { Circle, Trash2 } from 'lucide-react-native'
-import { Text, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './styles'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
-interface TaskProps {}
+interface TaskProps {
+  task: string
+  isDone: boolean
+  handleUndone: () => void
+  handleDone: () => void
+  onRemove: () => void
+}
 
-export function Task(props: TaskProps) {
+export function Task({
+  task,
+  onRemove,
+  isDone,
+  handleDone,
+  handleUndone,
+}: TaskProps) {
   return (
-    <View style={styles.container}>
-      <Circle size={17.45} color="#4EA8DE" />
-      <Text style={styles.text}>
-        Integer urna interdum massa libero auctor neque turpis turpis semper.
-      </Text>
-      <Trash2 size={14} color="#808080" />
-    </View>
+    <>
+      {isDone ? (
+        <View style={styles.doneContainer}>
+          <TouchableOpacity style={styles.iconContainer} onPress={handleUndone}>
+            <View style={styles.iconBg} />
+            <FontAwesomeIcon icon={faCircleCheck} color="#5E60CE" />
+          </TouchableOpacity>
+          <Text style={styles.text}>{task}</Text>
+          <TouchableOpacity onPress={onRemove}>
+            <Trash2 size={14} color="#808080" />
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View style={styles.container}>
+          <Circle size={17.45} color="#4EA8DE" onClick={handleDone} />
+          <Text style={styles.text}>{task}</Text>
+          <TouchableOpacity onPress={onRemove}>
+            <Trash2 size={14} color="#808080" />
+          </TouchableOpacity>
+        </View>
+      )}
+    </>
   )
 }

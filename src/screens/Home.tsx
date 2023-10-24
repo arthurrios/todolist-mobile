@@ -1,14 +1,15 @@
-import { Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Header } from '../components/Header'
 import { styles } from './styles'
 import { PlusCircle } from 'lucide-react-native'
 import { useState } from 'react'
 import { Task } from '../components/Task'
-import { DoneTask } from '../components/DoneTask'
 
 export function Home() {
-  const [created, setCreated] = useState(0)
-  const [done, setDone] = useState(0)
+  const [created, setCreated] = useState<string[]>([])
+  const [done, setDone] = useState<string[]>([])
+  const [tasks, setTasks] = useState<string[]>([])
+  const [isDone, setIsDone] = useState<boolean>(false)
 
   const [isFocused, setIsFocused] = useState(false)
 
@@ -34,22 +35,31 @@ export function Home() {
           <View style={styles.quantityContainer}>
             <Text style={styles.createdText}>Criadas</Text>
             <View style={styles.quantityNumberBg}>
-              <Text style={styles.quantity}>{created}</Text>
+              <Text style={styles.quantity}>{created.length}</Text>
             </View>
           </View>
           <View style={styles.quantityContainer}>
             <Text style={styles.doneText}>Concluídas</Text>
             <View style={styles.quantityNumberBg}>
-              <Text style={styles.quantity}>{done}</Text>
+              <Text style={styles.quantity}>{done.length}</Text>
             </View>
           </View>
         </View>
 
-        <Task />
-        <Task />
-        <Task />
-        <DoneTask />
-        <DoneTask />
+        <FlatList
+          data={tasks}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <Task
+              key={item}
+              task={item}
+              isDone={isDone}
+              onRemove={() => handleRemoveTask(item)}
+              handleDone={() => handleDoneTask(item)}
+              handleUndone={() => handleUndoneTask(item)}
+            />
+          )}
+        />
       </View>
     </View>
   )

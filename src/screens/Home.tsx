@@ -62,6 +62,26 @@ export function Home() {
     }
   }
 
+  function handleRemoveTask(task: string) {
+    Alert.alert('Remover', `Remover tarefa: ${task}?`, [
+      {
+        text: 'Sim',
+        onPress: () => {
+          setTasks((prevState) => prevState.filter((item) => item !== task))
+          if (created.includes(task)) {
+            setCreated((prevState) => prevState.filter((item) => item !== task))
+          } else if (done.includes(task)) {
+            setDone((prevState) => prevState.filter((item) => item !== task))
+          }
+        },
+      },
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+    ])
+  }
+
   return (
     <View style={styles.container}>
       <Header />

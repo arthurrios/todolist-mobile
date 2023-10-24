@@ -4,7 +4,7 @@ import { styles } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
-export interface TaskProps {
+interface TaskProps {
   task: string
   isDone: boolean
   handleUndone: () => void

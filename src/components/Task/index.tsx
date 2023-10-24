@@ -4,7 +4,7 @@ import { styles } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
-interface TaskProps {
+export interface TaskProps {
   task: string
   isDone: boolean
   handleUndone: () => void
@@ -15,7 +15,7 @@ interface TaskProps {
 export function Task({
   task,
   onRemove,
-  isDone,
+  isDone = false,
   handleDone,
   handleUndone,
 }: TaskProps) {
@@ -27,14 +27,16 @@ export function Task({
             <View style={styles.iconBg} />
             <FontAwesomeIcon icon={faCircleCheck} color="#5E60CE" />
           </TouchableOpacity>
-          <Text style={styles.text}>{task}</Text>
+          <Text style={styles.textStrikeThrough}>{task}</Text>
           <TouchableOpacity onPress={onRemove}>
             <Trash2 size={14} color="#808080" />
           </TouchableOpacity>
         </View>
       ) : (
         <View style={styles.container}>
-          <Circle size={17.45} color="#4EA8DE" onClick={handleDone} />
+          <TouchableOpacity onPress={handleDone}>
+            <Circle size={17.45} color="#4EA8DE" />
+          </TouchableOpacity>
           <Text style={styles.text}>{task}</Text>
           <TouchableOpacity onPress={onRemove}>
             <Trash2 size={14} color="#808080" />

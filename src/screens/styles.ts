@@ -81,4 +81,23 @@ export const styles = StyleSheet.create({
     color: '#D9D9D9',
     fontWeight: 'bold',
   },
+  emptyContainer: {
+    height: 208,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderTopColor: '#333',
+    borderColor: 'transparent',
+    borderWidth: 1,
+  },
+  emptyTextOne: {
+    color: '#808080',
+    marginTop: 16,
+    fontSize: 14,
+    fontWeight: 'bold',
+    lineHeight: 26,
+  },
+  emptyTextTwo: {
+    color: '#808080',
+    fontSize: 14,
+  },
 })

@@ -49,6 +49,11 @@ export function Home() {
     setCreated((prevState) => prevState.filter((item) => item !== task))
   }
 
+  function handleUndoneTask(task: string) {
+    setDone((prevState) => prevState.filter((item) => item !== task))
+    setCreated((prevState) => [...prevState, task])
+  }
+
   function handleIsDone(task: string) {
     if (done.includes(task)) {
       return true
